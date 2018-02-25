@@ -94,17 +94,22 @@
 			<script>
 				var temp = [
 				{{#each temp}}
-				{time: "{{this.time}}", val: {{this.val}} },	
+				this.val, 
 				{{/each}}
 				]
 				var humid = [
 				{{#each humid}}
-				{time: "{{this.time}}", val: {{this.val}} },	
+				this.val, 
 				{{/each}}
 				]
 				var light = [
 				{{#each light}}
-				{time: "{{this.time}}", val: {{this.val}} },	
+				this.val, 
+				{{/each}}
+				]
+				var x = [
+				{{#each light}}
+				"this.time", 
 				{{/each}}
 				]
 			</script>
