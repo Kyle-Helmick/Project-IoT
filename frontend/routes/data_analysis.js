@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 
-var url = "mongodb://raspberry:HackCUIV@localhost:27017/Project-IoT"
+var url = "mongodb://raspberry:HackCUIV@172.31.94.195:27017/Project-IoT"
 
 MongoClient.connect(url)
 	.then( db => {
