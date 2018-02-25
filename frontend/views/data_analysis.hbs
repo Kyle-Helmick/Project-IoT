@@ -91,12 +91,7 @@
 			<script src="/javascripts/main.js"></script>
 
 			<script>
-				var light = [{{light}}];
-				console.log(light);
-				var temp = [{{temp}}];
-				console.log(temp);
-				var humid = [{{humid}}];
-				console.log(humid);
+				var temp = [{{#each temp}}{time: {{this.time}}, val: {{this.val}}},	{{/each}}]
 			</script>
 
 	</body>
