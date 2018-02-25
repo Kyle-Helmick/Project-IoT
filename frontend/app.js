@@ -13,7 +13,11 @@ var data_analysis = require('./routes/data_analysis')
 
 var app = express();
 
-app.io = require( 'socket.io' )();
+var server = require('http').createServer(app);
+
+var io = require('socket.io')(server)
+
+server.listen(80);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,8 +60,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-while(true) {
-  app.io.emit('data_push', "hello!")
-}
+//while(true) {
+  //app.io.emit('data_push', "hello!")
+//}
 
 module.exports = app;
