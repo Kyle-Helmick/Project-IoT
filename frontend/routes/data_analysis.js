@@ -5,7 +5,8 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://raspberry:HackCUIV@172.31.94.195:27017/Project-IoT"
 
 MongoClient.connect(url)
-	.then( db => {
+	.then( client => {
+		var db = client.db("Project-IoT");
 		var temp = db.collection("Temperature");
 		var humid = db.collection("Humidity");
 		var light = db.collection("Light");
