@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
-const asser = require('assert');
+const assert = require('assert');
 
 const url = "mongodb://raspberry:HackCUIV@172.31.94.195:27017/Project-IoT";
 const dbname = "Project-IoT";
@@ -30,7 +30,7 @@ const dbname = "Project-IoT";
 
 			res.render('data_analysis', {temp: docs})
 		});
-		
+
 	} catch (err) {
 		console.log(err.stack)
 	}
