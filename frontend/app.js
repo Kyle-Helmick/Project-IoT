@@ -89,7 +89,7 @@ function get_data(){
 
 setInterval(function(){
   data = get_data()
-  console.log(data[0][0])
+  console.log(data)
   io.emit('data_push', 'hello!'); 
 }, 5000);
 
