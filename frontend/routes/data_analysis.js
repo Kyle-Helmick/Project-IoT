@@ -19,21 +19,22 @@ const dbname = "Project-IoT";
 		const humid = db.collection("Humidity");
 		const light = db.collection("Light");
 
-		var tempArray = await temp.find({}).next(function(err, documents) {return documents});
-		console.log(tempArray)
-		var humidArray = await humid.find({}).next(function(err, documents) {return documents});
-		console.log(humidArray)
-		var lightArray = await light.find({}).next(function(err, documents) {return documents});
-		console.log(lightArray)
-
 		router.get('/', async (req, res, next) => {
-			tempArray = await collections[0].find().toArray( docs => {
-				res.render('data_analysis', {temp: docs})
-			});
+
+			var tempArray = await temp.find({}).toArray();
+			console.log(tempArray)
+			var humidArray = await humid.find({}).toArray();
+			console.log(humidArray)
+			var lightArray = await light.find({}).toArray();
+			console.log(lightArray)
+
+			res.render('data_analysis', {temp: docs})
 		});
+		
 	} catch (err) {
 		console.log(err.stack)
 	}
+	client.close();
 });
 
 module.exports = router;
