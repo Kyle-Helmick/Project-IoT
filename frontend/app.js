@@ -6,6 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 
+const MongoClient = require('mongodb').MongoClient;
+
+const url = "mongodb://raspberry:HackCUIV@172.31.94.195:27017/Project-IoT";
+const dbname = "Project-IoT";
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var developers = require('./routes/developers')
@@ -60,8 +65,31 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+async function get_data(){
+  var tempArray;
+  var humidArray;
+  var lightArray;
+  MongoClient.connect(url)
+	.then( db => {
+		const temp = db.collection("Temperature");
+		const humid = db.collection("Humidity");
+		const light = db.collection("Light");
+		return [temp, humid, light]
+	})
+	.then( collection => {
+			tempArray = await collection[0].find().toArray();
+			humidArray = await collection[1].find().toArray();
+			lightArray = await collection[2].find().toArray();
+  });
+  return [tempArray, humidArray, lightArray]
+}
+
+
 setInterval(function(){
+  data = await get_data()
+  console.log(data[0][0])
   io.emit('data_push', 'hello!'); 
-}, 1000);
+}, 5000);
 
 module.exports = app;
