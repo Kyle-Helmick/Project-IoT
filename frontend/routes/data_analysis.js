@@ -4,39 +4,24 @@ var MongoClient = require('mongodb').MongoClient;
 
 var url = "mongodb://raspberry:HackCUIV@localhost:27017/Project-IoT"
 
-
-
 MongoClient.connect(url)
 	.then( db => {
-		return db.collection('Temperature');
-	})
-	.then( collection => {
-		router.get('/', async (req, res, next) => {
-			tempArray = await collection.find().toArray();
-			res.render('index', {temp: tempArray, title: 'temps over time'});
-	})
+		var temp = db.collection("Temperature")
+		var humid = db.collection("Humidity")
+		var light = db.collection("Light")
 
-	.then( db => {
-		return db.collection('Humidity');
+		return [temp,humid,light];
 	})
-	.then( collection => {
+	.then( collections => {
 		router.get('/', async (req, res, next) => {
-			humidArray = await collection.find().toArray();
-			res.render('index', {humid: humidArray, title: 'humidity over time'});
+			tempArray = await collections[0].find().toArray();
+			humidArray = await collections[1].find().toArray();
+			lightArray = await collections[2].find().toArray();
+			res.render('index', {light: lightArray, humid: humidArray, light: lightArray});
+		});
 	})
-
-	.then( db => {
-		return db.collection('Light');
-	})
-	.then( collection => {
-		router.get('/', async (req, res, next) => {
-			lightArray = await collection.find().toArray();
-			res.render('index', {light: lightArray, title: 'light over time'});
+	.catch(err => {
+		console.log(err);
 	});
-})
-
-.catch(err => {
-	console.log(err);
-});
 
 module.exports = router;
