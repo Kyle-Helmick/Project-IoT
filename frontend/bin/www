@@ -15,13 +15,14 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
-app.io.attach( server );
 
 /**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
+
+app.io.attach( server );
 
 /**
  * Listen on provided port, on all network interfaces.
