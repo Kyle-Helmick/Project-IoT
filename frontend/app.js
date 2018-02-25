@@ -83,6 +83,6 @@ setInterval(function(){
       console.log("somethings up")
       console.log(err)
     })
-}, 10000);
+}, 15000);
 
 module.exports = app;
