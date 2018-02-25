@@ -3946,7 +3946,7 @@
 
 		#flexgrid > :nth-child(3n + 1),
 		#flexgrid > :nth-child(3n) {
-			width: calc(50% + -1rem);
+			width: calc(45% + -1rem);
 		}
 
 		#flexgrid > div {
