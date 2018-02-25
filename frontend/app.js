@@ -80,6 +80,9 @@ setInterval(function(){
         print(lightArray)
         io.emit('data_push', 'hello!')
         return [tempArray, humidArray, lightArray]
+    }).catch( err => {
+      console.log("somethings up")
+      console.log(err)
     })
 }, 5000);
 
