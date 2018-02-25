@@ -15,7 +15,9 @@ MongoClient.connect(url)
 	})
 	.then( collections => {
 		router.get('/', async (req, res, next) => {
-			tempArray = await collections[0].find().toArray();
+			tempArray = await collections[0].find().toArray( docs => {
+				res.render('data_analysis', {temp: docs})
+			});
 			humidArray = await collections[1].find().toArray();
 			lightArray = await collections[2].find().toArray();
 			res.render('data_analysis', {temp: tempArray, humid: humidArray, light: lightArray});
