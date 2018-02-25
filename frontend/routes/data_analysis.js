@@ -14,7 +14,7 @@ MongoClient.connect(url)
 		router.get('/', async (req, res, next) => {
 			tempArray = await collection.find().toArray();
 			res.render('index', {temp: tempArray, title: 'temps over time'});
-		})
+	})
 
 	.then( db => {
 		return db.collection('Humidity');
@@ -23,7 +23,7 @@ MongoClient.connect(url)
 		router.get('/', async (req, res, next) => {
 			humidArray = await collection.find().toArray();
 			res.render('index', {humid: humidArray, title: 'humidity over time'});
-		})
+	})
 
 	.then( db => {
 		return db.collection('Light');
@@ -32,16 +32,11 @@ MongoClient.connect(url)
 		router.get('/', async (req, res, next) => {
 			lightArray = await collection.find().toArray();
 			res.render('index', {light: lightArray, title: 'light over time'});
-		});
+	});
 })
 
 .catch(err => {
 	console.log(err);
-})
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('data_analysis', { title: 'Data Analysis' });
 });
 
 module.exports = router;
