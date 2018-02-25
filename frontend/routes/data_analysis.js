@@ -30,7 +30,7 @@ MongoClient.connect(url)
 		router.get('/', async (req, res, next) => {
 			lightArray = await collection.find().toArray();
 			res.render('index', {light: lightArray, title: 'light over time'});
-		})
+		});
 	
 
 /* GET home page. */
