@@ -3,7 +3,7 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 
 var url = "mongodb://localhost:27017/Project-IoT";
-
+/*
 MongoClient.connect(url)
 	.then( db => {
 		return db.collection('Inverntory');
@@ -17,7 +17,7 @@ MongoClient.connect(url)
 			res.render('index', {humid: humidArray, title: 'humidity over time'});
 			res.render('index', {light: lightArray, title: 'light over time'});
 		});
-
+*/
 		
 
 /* GET home page. */
