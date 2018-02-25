@@ -6,9 +6,9 @@ var url = "mongodb://raspberry:HackCUIV@172.31.94.195:27017/Project-IoT"
 
 MongoClient.connect(url)
 	.then( db => {
-		var temp = db.collection("Temperature")
-		var humid = db.collection("Humidity")
-		var light = db.collection("Light")
+		var temp = db.collection("Temperature");
+		var humid = db.collection("Humidity");
+		var light = db.collection("Light");
 
 		return [temp,humid,light];
 	})
