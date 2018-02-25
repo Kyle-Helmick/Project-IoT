@@ -57,7 +57,7 @@ app.use(function(err, req, res, next) {
 });
 
 while(true) {
-  io.emit('data_push', "hello!")
+  app.io.emit('data_push', "hello!")
 }
 
 module.exports = app;
