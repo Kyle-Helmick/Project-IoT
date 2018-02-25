@@ -14,9 +14,9 @@ MongoClient.connect(url)
 	})
 	.then( collection => {
 		router.get('/', async (req, res, next) => {
-			let tempArray;
-			let humidArray;
-			let lightArray;
+			var tempArray;
+			var humidArray;
+			var lightArray;
 			await collection[0].find().toArray(function(err, results) {
 				tempArray = results;
 			})
