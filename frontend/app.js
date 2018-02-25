@@ -60,6 +60,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-io.emit('data_push', "hello!")
+setInterval(function(){
+  io.emit('data_push', 'hello!'); 
+}, 1000);
 
 module.exports = app;
