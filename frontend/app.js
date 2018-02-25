@@ -67,7 +67,7 @@ app.use(function(err, req, res, next) {
 
 
 function get_data(){
-  return MongoClient.connect(url)
+  MongoClient.connect(url)
     .then( db => {
       const temp = db.collection("Temperature");
       const humid = db.collection("Humidity");
@@ -85,7 +85,6 @@ function get_data(){
     });
 
 }
-
 
 setInterval(function(){
   data = get_data()
