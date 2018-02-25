@@ -77,13 +77,12 @@ setInterval(function(){
         tempArray = await collection[0].find().toArray();
         humidArray = await collection[1].find().toArray();
         lightArray = await collection[2].find().toArray();
-        console.log(lightArray)
-        io.emit('data_push', 'hello!')
+        io.emit('data_push', [tempArray, humidArray, lightArray])
         return [tempArray, humidArray, lightArray]
     }).catch( err => {
       console.log("somethings up")
       console.log(err)
     })
-}, 5000);
+}, 10000);
 
 module.exports = app;
