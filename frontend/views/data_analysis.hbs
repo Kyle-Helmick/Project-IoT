@@ -127,6 +127,28 @@
 
 				Plotly.newPlot('LGraph', light_data);
 
+				var humid_data = [
+					{
+						x: x,
+						y: humid,
+						type: 'scatter',
+						mode: 'lines'
+					}
+				];
+
+				Plotly.newPlot('HGraph', humid_data);
+
+				var temp_data = [
+					{
+						x: x,
+						y: temp,
+						type: 'scatter',
+						mode: 'lines'
+					}
+				];
+
+				Plotly.newPlot('TGraph', temp_data);
+
 			</script>
 
 	</body>
