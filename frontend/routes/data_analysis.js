@@ -12,7 +12,7 @@ MongoClient.connect(url)
 		router.get('/', async (req, res, next) => {
 			tempArray = await collection.find().toArray();
 			res.render('index', {temp: tempArray, title: 'temps over time'});
-		});
+		})
 
 	.then( db => {
 		return db.collection('Humidity');
@@ -21,7 +21,7 @@ MongoClient.connect(url)
 		router.get('/', async (req, res, next) => {
 			humidArray = await collection.find().toArray();
 			res.render('index', {humid: humidArray, title: 'humidity over time'});
-		});
+		})
 
 	.then( db => {
 		return db.collection('Light');
@@ -31,10 +31,7 @@ MongoClient.connect(url)
 			lightArray = await collection.find().toArray();
 			res.render('index', {light: lightArray, title: 'light over time'});
 		});
-
-
-
-		
+	
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
