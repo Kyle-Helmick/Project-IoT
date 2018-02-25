@@ -91,7 +91,11 @@
 			<script src="/javascripts/main.js"></script>
 
 			<script>
-				var temp = [{{#each temp}}{time: {{this.time}}, val: {{this.val}}},	{{/each}}]
+				var temp = [
+				{{#each temp}}
+				{time: {{this.time}}, val: {{this.val}} },	
+				{{/each}}
+				]
 			</script>
 
 	</body>
