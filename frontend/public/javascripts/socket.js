@@ -11,7 +11,7 @@ socket.on('data_push', function data_update(temp) {
     x = []
 
 
-    for(var i = 0; i < temparray.length(); i++) {
+    for(var i = 0; i < temparray.length; i++) {
       temp.push(temparray[i]['val'])
       humid.push(humidarray[i]['val'])
       light.push(lightarray[i]['var'])
