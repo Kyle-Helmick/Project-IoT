@@ -1,17 +1,18 @@
+# Imports
 import serial
 import datetime
+# Set up serial
 ser = serial.Serial('/dev/ttyACM1')  # open serial port
-#print(ser.name)         # check which port was really used
+# Set the lists that will hold the data to empty
 humidity = []
 temperature = []
 light = []
+# Get the data
 while 1:
     line = ser.readline()
-    line = str(line)
-    # print(line)    
+    line = str(line) 
     line_split = line.split(' ')[1]
     line_split1 = line.split(' ')[0]
-    # print(line.split(' '))
     line_split = line_split.split('\\r')
     value = float(line_split[0])
     name = str(line_split1[len(line_split1)-2])
