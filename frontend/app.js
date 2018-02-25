@@ -66,28 +66,29 @@ app.use(function(err, req, res, next) {
 });
 
 
-async function get_data(){
-  var tempArray;
-  var humidArray;
-  var lightArray;
-  MongoClient.connect(url)
-	.then( db => {
-		const temp = db.collection("Temperature");
-		const humid = db.collection("Humidity");
-		const light = db.collection("Light");
-		return [temp, humid, light]
-	})
-	.then( collection => {
-			tempArray = await collection[0].find().toArray();
-			humidArray = await collection[1].find().toArray();
-			lightArray = await collection[2].find().toArray();
-  });
-  return [tempArray, humidArray, lightArray]
+function get_data(){
+  return MongoClient.connect(url)
+    .then( db => {
+      const temp = db.collection("Temperature");
+      const humid = db.collection("Humidity");
+      const light = db.collection("Light");
+      return [temp, humid, light]
+    })
+    .then( async function(collection) {
+        tempArray = await collection[0].find().toArray();
+        humidArray = await collection[1].find().toArray();
+        lightArray = await collection[2].find().toArray();
+        return [tempArray, humidArray, lightArray]
+    })
+    .then( arrays => {
+      return arrays
+    });
+
 }
 
 
-setInterval(async function(){
-  data = await get_data()
+setInterval(function(){
+  data = get_data()
   console.log(data[0][0])
   io.emit('data_push', 'hello!'); 
 }, 5000);
