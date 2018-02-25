@@ -60,8 +60,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//while(true) {
-  //app.io.emit('data_push', "hello!")
-//}
+while(true) {
+  app.io.emit('data_push', "hello!")
+}
 
 module.exports = app;
