@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 
-var url = "mongodb://localhost:27017/Project-IoT";
+var url = "mongodb://localhost:27017/Project-IoT"
 
 MongoClient.connect(url)
 	.then( db => {
@@ -30,7 +30,7 @@ MongoClient.connect(url)
 		router.get('/', async (req, res, next) => {
 			lightArray = await collection.find().toArray();
 			res.render('index', {light: lightArray, title: 'light over time'});
-		});
+		})
 	
 
 /* GET home page. */
