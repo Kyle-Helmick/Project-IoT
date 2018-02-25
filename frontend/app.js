@@ -86,7 +86,7 @@ async function get_data(){
 }
 
 
-setInterval(function(){
+setInterval(async function(){
   data = await get_data()
   console.log(data[0][0])
   io.emit('data_push', 'hello!'); 
