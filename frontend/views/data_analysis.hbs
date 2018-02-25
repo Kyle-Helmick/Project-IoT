@@ -155,7 +155,13 @@
 					}
 				];
 
-				Plotly.newPlot('HGraph', humid_data);
+				var layout = {
+					xaxis: {
+						title: 'Time'
+					}
+				};
+
+				Plotly.newPlot('HGraph', humid_data, layout);
 
 				var temp_data = [
 					{
