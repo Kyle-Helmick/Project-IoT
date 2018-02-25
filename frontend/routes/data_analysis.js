@@ -17,7 +17,8 @@ MongoClient.connect(url)
 			tempArray = await collection[0].find().toArray();
 			humidArray = await collection[1].find().toArray();
 			lightArray = await collection[2].find().toArray();
-			res.render('data_analysis', {temp: tempArray, humid: humidArray, light: lightArray});
+
+			res.render('data_analysis', {temp: JSON.stringify(tempArray), humid: JSON.stringify(humidArray), light: JSON.stringify(lightArray)});
 		});
 	})
 	.catch( err => {
