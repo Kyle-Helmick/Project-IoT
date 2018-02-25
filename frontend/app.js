@@ -85,4 +85,24 @@ setInterval(function(){
     })
 }, 15000);
 
+io.on('connection', function (socket) {
+  MongoClient.connect(url)
+    .then( db => {
+      const temp = db.collection("Temperature");
+      const humid = db.collection("Humidity");
+      const light = db.collection("Light");
+      return [temp, humid, light]
+    })
+    .then( async function(collection) {
+        tempArray = await collection[0].find().toArray();
+        humidArray = await collection[1].find().toArray();
+        lightArray = await collection[2].find().toArray();
+        io.emit('data_push', [tempArray, humidArray, lightArray])
+        return [tempArray, humidArray, lightArray]
+    }).catch( err => {
+      console.log("somethings up")
+      console.log(err)
+    })
+});
+
 module.exports = app;
