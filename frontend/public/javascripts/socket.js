@@ -102,8 +102,4 @@ socket.on('data_push', function data_update(temp) {
 
     Plotly.newPlot('TGraph', temp_data, layout);
 
-
-
-
-
 });
