@@ -65,8 +65,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-function get_data(){
+setInterval(function(){
   MongoClient.connect(url)
     .then( db => {
       const temp = db.collection("Temperature");
@@ -78,18 +77,10 @@ function get_data(){
         tempArray = await collection[0].find().toArray();
         humidArray = await collection[1].find().toArray();
         lightArray = await collection[2].find().toArray();
+        print(lightArray)
+        io.emit('data_push', 'hello!')
         return [tempArray, humidArray, lightArray]
     })
-    .then( arrays => {
-      return arrays
-    });
-
-}
-
-setInterval(function(){
-  data = get_data()
-  console.log(data)
-  io.emit('data_push', 'hello!'); 
 }, 5000);
 
 module.exports = app;
