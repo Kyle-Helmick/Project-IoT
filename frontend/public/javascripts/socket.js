@@ -7,7 +7,7 @@ socket.on('data_push', function data_update(temp) {
     
     temp = []
     humid = []
-    lightarray = []
+    light = []
     x = []
 
 
