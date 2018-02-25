@@ -125,7 +125,26 @@
 					}
 				];
 
-				Plotly.newPlot('LGraph', light_data);
+				var layout = {
+					xaxis: {
+						title: 'Time',
+						titlefont: {
+						family: 'Courier New, monospace',
+						size: 18,
+						color: '#7f7f7f'
+						}
+					},
+					yaxis: {
+						title: 'Percentage of Brightness',
+						titlefont: {
+						family: 'Courier New, monospace',
+						size: 18,
+						color: '#7f7f7f'
+						}
+					}
+				};
+
+				Plotly.newPlot('LGraph', light_data, layout);
 
 				var humid_data = [
 					{
