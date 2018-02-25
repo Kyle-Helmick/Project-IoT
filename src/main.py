@@ -1,12 +1,20 @@
 # Imports
 import serial
 import datetime
+from pymongo import MongoClient
+from pprint import pprint
 # Set up serial
-ser = serial.Serial('/dev/ttyACM1')  # open serial port
-# Set the lists that will hold the data to empty
-humidity = []
-temperature = []
-light = []
+ser = serial.Serial('/dev/ttyACM0')  # open serial port
+
+client = MongoClient('mongodb://raspberry:HackCUIV@52.90.252.23:27017/Project-IoT')
+#client = MongoClient('mongodb://localhost:27017/')
+
+db = client['Project-IoT']
+
+humidity = db.Humidity
+temperature = db.Temperature
+light = db.Light
+
 # Get the data
 while 1:
     line = ser.readline()
@@ -18,14 +26,17 @@ while 1:
     name = str(line_split1[len(line_split1)-2])
 
     time = str(datetime.datetime.now())
+
     if name == 'L':
         value /= 10
-    obj = (time, value)
+
+    obj = {"time": time, "val": value}
     print(obj)
 
     if name == 'H':
-        humidity.append(obj)
+        humidity.insert(obj)
     if name == 'T':
-        temperature.append(obj)
+        temperature.insert(obj)
     if name == 'L':
-        light.append(obj)
+        light.insert(obj)
+    
