@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/stylesheets/main.css" />
-		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="plotly-latest.min.js"></script>
 	</head>
 	<body>
 
@@ -52,6 +52,7 @@
 									<h2>Humidity Analysis</h2>
 								</header>
 								<hr />
+								<div id="HGraph"></div>
 							</div>
 						</div>
 						<div class="box">
@@ -60,6 +61,7 @@
 									<h2>Temperature Analysis</h2>
 								</header>
 								<hr />
+								<div id="TGraph"></div>
 							</div>
 						</div>
 						<div class="box">
@@ -68,6 +70,7 @@
 									<h2>Light Analysis</h2>
 								</header>
 								<hr />
+								<div id="LGraph"></div>
 							</div>
 						</div>
 					</div>
@@ -112,6 +115,18 @@
 				"{{this.time}}", 
 				{{/each}}
 				]
+
+				var light_data = [
+					{
+						x: x,
+						y: light,
+						type: 'scatter',
+						mode: 'lines'
+					}
+				];
+
+				Plotly.newPlot('LGraph', light_data);
+
 			</script>
 
 	</body>
