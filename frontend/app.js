@@ -15,6 +15,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var developers = require('./routes/developers')
 var data_analysis = require('./routes/data_analysis')
+var machine_learning = require('./routes/machine_learning')
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/', index);
 app.use('/developers', developers)
 app.use('/users', users);
 app.use('/data_analysis', data_analysis)
+app.use('/machine_learning', machine_learning)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
